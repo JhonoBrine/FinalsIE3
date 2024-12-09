@@ -41,8 +41,10 @@ try:
         st.write("Frequent itemsets represent combinations of items often purchased together.")
         st.write(frequent_itemsets)
 
+        num_itemsets = len(transactions)
+
         # Generate association rules
-        rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=min_confidence)
+        rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=min_confidence), num_itemsets=num_itemsets
 
         if rules.empty:
             st.warning("No association rules found for the given confidence level. Try lowering the minimum confidence.")
