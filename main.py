@@ -32,7 +32,7 @@ data_page = st.Page(
 
 
 conc_reco_page = st.Page(
-    page="views/conclusiionNRecommendation.py",
+    page="views/conclusionNRecommendation.py",
     title="Conclusion and Recommendation",
     icon=":material/home:",
 )
