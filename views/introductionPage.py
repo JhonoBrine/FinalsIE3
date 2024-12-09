@@ -1,3 +1,4 @@
+import streamlit as st
 import os
 
-os.write("Introduction Page")
+st.write("Introduction Page")
