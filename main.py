@@ -23,14 +23,22 @@ home_page = st.Page(
 
 # Data Page
 ## This is the page where most of the graphs, with different possible combinations used for Apriori Algorithm is up. Explanations for each data will be here...
-## no tables or few tables will only be available here, since only graphs that are realted to Grocery dataset should be here. Data cleaning should only happen in the background
+## no tables or few tables will only be available here, since only graphs that are related to Grocery dataset should be here. Data cleaning should only happen in the background
 data_page = st.Page(
     page="views/dataPage.py",
     title="Grocery Dataset",
     icon=":material/home:",
 )
 
+data_test_page = st.Page(
+    page="views/testPage.py",
+    title="Test Dataset",
+    icon=":material/home:",
+)
 
+
+# Conclusion and Recommendation Page
+## This is the page where some of the graphs and tables, with their explanations, it is where most of the conclusion will happen, what kind of dataset 
 conc_reco_page = st.Page(
     page="views/conclusionNRecommendationPage.py",
     title="Conclusion and Recommendation",
@@ -50,7 +58,7 @@ member_page = st.Page(
 pg = st.navigation(
     {
         "Home": [home_page],
-        "Data Visualization": [data_page],
+        "Data Visualization": [data_page, data_test_page],
         "Finale": [conc_reco_page],
         "BaoBao": [member_page],
     }
