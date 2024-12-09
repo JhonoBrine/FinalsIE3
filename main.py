@@ -26,7 +26,13 @@ home_page = st.Page(
 ## no tables or few tables will only be available here, since only graphs that are related to Grocery dataset should be here. Data cleaning should only happen in the background
 data_page = st.Page(
     page="views/dataPage.py",
-    title="Grocery Dataset",
+    title="Grocery Dataset by transaction",
+    icon=":material/home:",
+)
+
+data_page_2 = st.Page(
+    page="views/dataPage2.py",
+    title="Grocery Dataset by members",
     icon=":material/home:",
 )
 
@@ -36,9 +42,6 @@ data_test_page = st.Page(
     icon=":material/home:",
 )
 
-
-# Conclusion and Recommendation Page
-## This is the page where some of the graphs and tables, with their explanations, it is where most of the conclusion will happen, what kind of dataset 
 conc_reco_page = st.Page(
     page="views/conclusionNRecommendationPage.py",
     title="Conclusion and Recommendation",
@@ -58,7 +61,7 @@ member_page = st.Page(
 pg = st.navigation(
     {
         "Home": [home_page],
-        "Data Visualization": [data_page, data_test_page],
+        "Data Visualization": [data_page,data_page_2, data_test_page],
         "Finale": [conc_reco_page],
         "BaoBao": [member_page],
     }
