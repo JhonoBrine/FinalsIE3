@@ -17,23 +17,22 @@ file_path = "assets/csv/Groceries_dataset.csv"  # Ensure this file is in the sam
 try:
     data = pd.read_csv(file_path)
 
-    # Display the raw dataset
-    st.subheader("Raw Dataset")
-    st.dataframe(data.head())
+    # Data cleaning
+    data = data.dropna(subset=["Member_number", "itemDescription"])
+    data["itemDescription"] = data["itemDescription"].str.lower().str.strip()
+    data = data.drop_duplicates()
 
-    # Preprocess the dataset
-    st.subheader("Data Preprocessing")
+    # Group transactions by `Member_number` (unique shopper)
     st.write("Grouping transactions by `Member_number`...")
     transactions = data.groupby("Member_number")["itemDescription"].apply(list)
+    st.write("Transactions have been grouped by `Member_number`, representing individual shoppers.")
 
     # Convert transactions into a one-hot encoded DataFrame
-    st.write("Transforming data into a one-hot encoded format...")
-    item_set = set(data["itemDescription"].unique())
+    item_set = set(data["itemDescription"].unique())  # All unique items
     one_hot_encoded = pd.DataFrame(
         [{item: (item in transaction) for item in item_set} for transaction in transactions]
     )
-    st.write("One-hot encoded data preview:")
-    st.dataframe(one_hot_encoded.head())
+    # st.write("Data has been transformed into a one-hot encoded format, representing each item in the transactions.")
 
     # Apply Apriori algorithm
     st.subheader("Frequent Itemsets")
@@ -41,6 +40,7 @@ try:
     if frequent_itemsets.empty:
         st.warning("No frequent itemsets found for the given support level. Try lowering the minimum support.")
     else:
+        st.write("The table below lists the frequent itemsets discovered from the transactions. Each row shows an itemset, its support, and other relevant details.")
         st.write(frequent_itemsets)
 
         # Visualization of Item Frequencies (Bar Graph for Item Frequencies)
@@ -53,6 +53,7 @@ try:
         ax.set_ylabel("Frequency")
         ax.tick_params(axis='x', rotation=45)  # Rotate x-axis labels for better readability
         st.pyplot(fig)
+        st.write("This bar graph displays the top 20 most frequently purchased items in the dataset. The x-axis shows the item descriptions, while the y-axis represents their frequency.")
 
         # Generate association rules
         st.subheader("Association Rules")
@@ -68,6 +69,7 @@ try:
             if rules.empty:
                 st.warning("No association rules found for the given confidence level. Try lowering the minimum confidence.")
             else:
+                st.write("The table below displays the association rules generated based on the given minimum confidence threshold. Each row includes the antecedent, consequent, support, confidence, lift, and other metrics.")
                 st.write(rules)
 
                 # Visualization of Association Rules (Confidence vs Lift)
@@ -91,6 +93,7 @@ try:
                 ax.set_xlabel("Confidence")
                 ax.set_ylabel("Lift")
                 st.pyplot(fig)
+                st.write("The scatter plot shows the relationship between confidence and lift for the association rules. Each point represents a rule, and its position reflects its confidence (x-axis) and lift (y-axis). Rules with higher lift are generally more meaningful.")
 
                 # Download link for results
                 st.subheader("Download Results")
