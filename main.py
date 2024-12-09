@@ -10,7 +10,8 @@ file = os.path.join(base_dir, "views/introductionPage.py")
 
 # Introduction Page
 ## This is the page that we will introduce the Grocery dataset that will be used on the dataPage.py. Most simple tables and explanations regarding
-## Apriori Algorithm will be explained here, should be concise and be able to explain the graphs properly.
+## Apriori Algorithm will be explained here, should be concise and be able to explain the graphs properly. The cleaning will be mentioned here, and 
+## the process of the cleaning will be mentioned here.
 
 home_page = st.Page(
     page="views/introductionPage.py",
@@ -19,15 +20,28 @@ home_page = st.Page(
     default=True,
 )
 
+
+# Data Page
+## This is the page where most of the graphs, with different possible combinations used for Apriori Algorithm is up. Explanations for each data will be here...
+## no tables or few tables will only be available here, since only graphs that are realted to Grocery dataset should be here. Data cleaning should only happen in the background
 data_page = st.Page(
     page="views/dataPage.py",
-    title="Introduction",
+    title="Grocery Dataset",
     icon=":material/home:",
 )
 
+
+conc_reco_page = st.Page(
+    page="views/conclusiionNRecommendation.py",
+    title="Conclusion and Recommendation",
+    icon=":material/home:",
+)
+
+# Members Page
+## Self explanatory
 member_page = st.Page(
     page="views/membersPage.py",
-    title="Introduction",
+    title="Bao Bao",
     icon=":material/home:",
 )
 
@@ -37,6 +51,7 @@ pg = st.navigation(
     {
         "Home": [home_page],
         "Data Visualization": [data_page],
+        "Finale": [conc_reco_page],
         "BaoBao": [member_page],
     }
 )
