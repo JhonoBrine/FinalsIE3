@@ -23,7 +23,7 @@ try:
     data = data.drop_duplicates()
 
     # Group transactions by `Member_number` (unique shopper)
-    st.write("Grouping transactions by `Member_number`...")
+    st.write("###Grouping transactions by `Member_number`")
     transactions = data.groupby("Member_number")["itemDescription"].apply(list)
     st.write("Transactions have been grouped by `Member_number`, representing individual shoppers.")
 
