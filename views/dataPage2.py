@@ -32,6 +32,9 @@ try:
     one_hot_encoded = pd.DataFrame(
         [{item: (item in transaction) for item in item_set} for transaction in transactions]
     )
+    
+    st.write("One-hot encoded data preview:")
+    st.dataframe(one_hot_encoded.head())
     # st.write("Data has been transformed into a one-hot encoded format, representing each item in the transactions.")
 
     # Apply Apriori algorithm
@@ -83,7 +86,7 @@ try:
                 for i, row in rules.iterrows():
                     ax.text(
                         row['confidence'], row['lift'], 
-                        f"Row {i+1}",  # Add row number (starting from 1)
+                        f"Row {i}",  # Add row number (starting from 1)
                         horizontalalignment='left', 
                         size='small', 
                         color='black'

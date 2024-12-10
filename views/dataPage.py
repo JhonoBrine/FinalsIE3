@@ -41,6 +41,9 @@ try:
         [{item: (item in transaction) for item in item_set} for transaction in transactions['itemDescription']]
     )
     one_hot_encoded['transaction_id'] = transactions['transaction_id']  # Keep transaction_id for reference
+    
+    st.write("One-hot encoded data preview:")
+    st.dataframe(one_hot_encoded.head())
 
     # Apply Apriori algorithm
     st.subheader("Frequent Itemsets")
@@ -92,7 +95,7 @@ try:
             for i, row in rules.iterrows():
                 ax.text(
                     row['confidence'], row['lift'], 
-                    f"Row {i+1}",  # Add row number (starting from 1)
+                    f"Row {i}",  # Add row number (starting from 1)
                     horizontalalignment='left', 
                     size='small', 
                     color='black'
