@@ -61,7 +61,7 @@ member_page = st.Page(
 pg = st.navigation(
     {
         "Home": [home_page],
-        "Data Visualization": [data_page,data_page_2, data_test_page],
+        "Data Visualization": [data_page_2, data_page, data_test_page],
         "Finale": [conc_reco_page],
         "BaoBao": [member_page],
     }
